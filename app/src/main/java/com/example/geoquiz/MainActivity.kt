@@ -97,6 +97,20 @@ fun onScreen(modifier: Modifier = Modifier) {
                     }, modifier = Modifier.padding(10.dp)) { Text("True") }
                 }
             }
+            if (!canGetAnswer) {
+                Button(onClick = {
+                    if (round < 5) {
+                        round+=1
+                        question = questions[round].quest
+                        canGetAnswer = true
+                    }
+                    else {
+                        showDialog = true
+                    }
+                }, modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp), ) {if (round < 5) Text("Next") else Text("Итоги")}
+            }
         }
     }
 }

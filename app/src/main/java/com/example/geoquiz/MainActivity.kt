@@ -56,4 +56,10 @@ fun onScreen(modifier: Modifier = Modifier) {
         Question("The Amazon River is the longest river in the Americas.", true),
         Question("Lake Baikal is the world's oldest and deepest freshwater lake.", true),
     )
+
+    var round by remember { mutableStateOf(0) }
+    var question by remember { mutableStateOf(questions[round].quest) }
+    var correct by remember { mutableStateOf(0) }
+    var canGetAnswer by remember { mutableStateOf(true) }
+    var showDialog by remember { mutableStateOf(false) }
 }

@@ -111,6 +111,24 @@ fun onScreen(modifier: Modifier = Modifier) {
                     .fillMaxWidth()
                     .padding(10.dp), ) {if (round < 5) Text("Next") else Text("Итоги")}
             }
+            if (showDialog) {
+                AlertDialog(
+                    onDismissRequest = { showDialog = false },
+                    title = { Text("Результаты") },
+                    text = { Text(correct.toString() + " правильных ответов") },
+                    confirmButton = {
+                        TextButton(onClick = {
+                            showDialog = false
+                            correct = 0
+                            round = 0
+                            canGetAnswer = true
+                        })
+                        {
+                            Text("Заново")
+                        }
+                    }
+                )
+            }
         }
     }
 }

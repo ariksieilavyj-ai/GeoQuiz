@@ -62,4 +62,41 @@ fun onScreen(modifier: Modifier = Modifier) {
     var correct by remember { mutableStateOf(0) }
     var canGetAnswer by remember { mutableStateOf(true) }
     var showDialog by remember { mutableStateOf(false) }
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                question, modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                textAlign = TextAlign.Center
+            )
+            if (canGetAnswer) {
+                Row(
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement
+                        .SpaceBetween
+                ) {
+                    Button(onClick = {
+                        if (false == questions[round].answer) {
+                            correct += 1
+                        }
+                        canGetAnswer = false
+                    }, modifier = Modifier.padding(10.dp)) { Text("False") }
+                    Button(onClick = {
+                        if (true == questions[round].answer) {
+                            correct += 1
+                        }
+                        canGetAnswer = false
+                    }, modifier = Modifier.padding(10.dp)) { Text("True") }
+                }
+            }
+        }
+    }
 }
